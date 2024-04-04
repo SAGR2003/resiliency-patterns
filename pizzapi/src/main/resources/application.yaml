@@ -15,3 +15,13 @@ spring:
       matching-strategy: ant_path_matcher
 server:
   port: 8081
+resilience4j:
+  circuitbreaker:
+    configs:
+      pizzaDb:
+        registerHealthIndicator: true
+        slidingWindowSize: 1
+        minimumNumberOfCalls: 1
+        permittedNumberOfCallsInHalfOpenState: 1
+        waitDurationInOpenState: 1s
+        failureRateThreshold: 100
